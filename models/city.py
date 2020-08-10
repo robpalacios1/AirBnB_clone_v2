@@ -1,14 +1,9 @@
 #!/usr/bin/python3
-'''class inherent of BaseModel'''
+""" City Module for HBNB project """
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    '''class city'''
-
+    """ The city class, contains state ID and name """
     state_id = ""
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """initializes City"""
-        super().__init__(*args, **kwargs)
