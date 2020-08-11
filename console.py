@@ -131,32 +131,44 @@ class HBNBCommand(cmd.Cmd):
         print("[Usage]: create <className>\n")
 
     def do_show(self, args):
-        """ Method to show an individual object """
-        new = args.partition(" ")
-        c_name = new[0]
-        c_id = new[2]
-
-        # guard against trailing args
-        if c_id and ' ' in c_id:
-            c_id = c_id.partition(' ')[0]
-
-        if not c_name:
-            print("** class name missing **")
-            return
-
-        if c_name not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-
-        if not c_id:
-            print("** instance id missing **")
-            return
-
-        key = c_name + "." + c_id
+        """ Create a new instance of BaseModel, saves it
+        Exceptions:
+            SyntaxError: When there is no args given
+            NameError: when there is no object has the name
+        """
         try:
-            print(storage._FileStorage__objects[key])
-        except KeyError:
-            print("** no instance found **")
+            if not line:
+                raise SyntaxError()
+            my_list = line.split(" ")
+            obj = eval("{}()".format(my_list[0]))
+            for arg in my_list[1:]:
+                if "=" in arg:
+                    pair = arg.split("=")
+                    key = pair[0]
+                    value = pair[1]
+                    if value[0] == value[-1] == '""':
+                        value = value.replace("_", " ")
+                        value = value.split('""')[1]
+                        value = value.split('""')[0]
+                    else:
+                        try:
+                            value = float(value)
+                        except:
+                            try:
+                                value = float(value)
+                            except:
+                                continue
+                obj.__dict__[key] = value
+                """
+                obj = eval(my_list[0])(**new_dict)
+                """
+                obj.save()
+                print("{}".format(obj.id))
+        except SyntaxError:
+            print("** class name missing **")
+        except NameError:
+            print("** class doesn't exist **")
+
 
     def help_show(self):
         """ Help information for the show command """
