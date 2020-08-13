@@ -246,7 +246,6 @@ class HBNBCommand(cmd.Cmd):
                 second_quote = args.find('\"', 1)
                 att_name = args[1:second_quote]
                 args = args[second_quote + 1:]
-
             args = args.partition(' ')
 
             # if att_name was not quoted arg
