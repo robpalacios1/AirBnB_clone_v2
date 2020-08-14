@@ -8,7 +8,6 @@ import pep8
 from models.city import City
 
 
-
 class TestCity(unittest.TestCase):
     """Test City class implementation"""
     def test_doc_module(self):
