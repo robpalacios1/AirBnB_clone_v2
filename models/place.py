@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-import models
-from models import Review, amenity
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
 from os import getenv
-from models.amenity import Amenity
 
 
 place_amenity = Table('place_amenity', Base.metadata,
@@ -73,7 +70,7 @@ class Place(BaseModel, Base):
             list_amenity = []
             all_amenity = models.storage.all(Amenity)
             for amenity_o in all_amenity.values():
-                if amenity.id in self.amenity_ids:
+                if amenity_0.id in self.amenity_ids:
                     list_amenity.append(amenity_o)
             return list_amenity
 
