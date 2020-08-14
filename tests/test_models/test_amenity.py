@@ -8,7 +8,7 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 
 
-class test_Amenity(test_basemodel):
+class Test_Amenity(test_basemodel):
     """Test Amenity"""
 
     def __init__(self, *args, **kwargs):
