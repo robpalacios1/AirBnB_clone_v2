@@ -7,10 +7,10 @@ from models.place import place_amenity
 from os import getenv
 
 
-<<<<<<< HEAD
+
 class Amenity(BaseModel):
     name = ""
-=======
+
 class Amenity(BaseModel, Base):
     """Representation of Amenity. """
     __tablename__ = "amenities"
@@ -19,4 +19,3 @@ class Amenity(BaseModel, Base):
         place_amenities = relationship("Place", secondary=place_amenity)
     else:
         name = ""
->>>>>>> 32fe769267d6b899d15aac85aba2d62793ac05e3
