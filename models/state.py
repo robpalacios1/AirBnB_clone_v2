@@ -1,34 +1,29 @@
 #!/usr/bin/python3
-"""This is the state class"""
+""" State Module for HBNB project """
 from models.base_model import BaseModel, Base
-import models
 from models.city import City
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-import os
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship, backref
+from os import getenv
+import models
 
 
 class State(BaseModel, Base):
-    """This is the class for State
-    Attributes:
-        name: input name
-    """
-    __tablename__ = "states"
-    name = Column(String(128), nullable=False)
-    if os.getenv("HBNB_TYPE_STORAGE") == "db":
-        cities = relationship("City", cascade="all, delete-orphan",
-                              backref="state")
-
+    """ State class """
+    __tablename__ = 'states'
+    if getenv('HBNB_TYPE_STORAGE') == 'db':
+        name = Column(String(128), nullable=False)
+        cities = relationship('City', backref='state',
+                              cascade="all, delete")
     else:
-        """File Storage"""
+        name = ""
+
         @property
         def cities(self):
-            """
-            city properties
-            """
-            city = []
-            for val in models.storage.all(City).values():
-                if val.state_id == self.id:
-                    city.append(val)
-            return city
+            """Attribute that returns the list of City."""
+            list_cities = []
+            all_cities = models.storage.all(City)
+            for city_o in all_cities:
+                if self.id == city_o.state_id:
+                    list_cities.append(city_o)
+            return list_cities
