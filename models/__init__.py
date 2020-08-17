@@ -11,7 +11,6 @@ from models.city import City
 from models.user import User
 from os import getenv
 
-
 if getenv('HBNB_TYPE_STORAGE') == 'db':
     storage = DBStorage()
 else:

@@ -7,6 +7,10 @@ from models.place import place_amenity
 from os import getenv
 
 
+class Amenity(BaseModel):
+    name = ""
+
+
 class Amenity(BaseModel, Base):
     """Representation of Amenity. """
     __tablename__ = "amenities"
