@@ -13,6 +13,20 @@ from models.user import User
 from models.base_model import BaseModel, Base
 
 
+database = os.getenv("HBNB_MYSQL_DB")
+host = os.getenv("HBNB_MYSQL_HOST")
+password = os.getenv("HBNB_MYSQL_PWD")
+user = os.getenv("HBNB_MYSQL_USER")
+
+instances = {
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "User": User,
+    "Review": Review,
+    "Place": Place
+}
+
 class DBStorage:
     """DB storage class."""
     __engine = None
@@ -74,3 +88,9 @@ class DBStorage:
         Session = scoped_session(sessionmaker(bind=self.__engine,
                                               expire_on_commit=False))
         self.__session = Session()
+
+    def close(self):
+        """
+        remove method on private session attribute
+        """
+        self.__session.remove()
