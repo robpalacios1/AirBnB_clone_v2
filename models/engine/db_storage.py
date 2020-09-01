@@ -18,6 +18,7 @@ host = os.getenv("HBNB_MYSQL_HOST")
 password = os.getenv("HBNB_MYSQL_PWD")
 user = os.getenv("HBNB_MYSQL_USER")
 
+
 instances = {
     "State": State,
     "City": City,
@@ -26,6 +27,7 @@ instances = {
     "Review": Review,
     "Place": Place
 }
+
 
 class DBStorage:
     """DB storage class."""
