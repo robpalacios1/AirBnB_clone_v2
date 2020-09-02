@@ -21,7 +21,7 @@ class DBStorage:
     __engine = None
     __session = None
 
-    def _init_(self):
+    def __init__(self):
         """This class manage Storage for Database"""
         self.__engine = create_engine(
             'mysql+mysqldb://{}:{}@{}:3306/{}'
@@ -52,7 +52,7 @@ class DBStorage:
                 objs += self.__session.query(cls)
 
         for obj in objs:
-            key = "{}.{}".format(type(obj)._name_, str(obj.id))
+            key = "{}.{}".format(type(obj).__name__, str(obj.id))
             _dic[key] = obj
 
         return _dic
