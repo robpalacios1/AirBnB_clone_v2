@@ -15,7 +15,7 @@ class State(BaseModel, Base):
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
 
-    if getenv("HBNB_TYPE_STORAGE")== "db":
+    if getenv("HBNB_TYPE_STORAGE") == "db":
         cities = relationship('City', cascade='all, delete', backref='state')
     else:
         @property
@@ -33,5 +33,4 @@ class State(BaseModel, Base):
             for city in cities_dict.values():
                 if city.state_id == self.id:
                     cities_list.append(city)
-
             return cities_list
