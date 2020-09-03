@@ -64,5 +64,5 @@ $ pip3 install Flask
 ~~~
 
 ## Author :book:
-Roberto Palacios [Twitter](https://twitter.com/robpalacios11) | [GitHub](https://github.com/robpalacios1)
+Joseban TRujillo [Twitter](https://twitter.com/josebant29) | [GitHub](https://github.com/josebant29
 
